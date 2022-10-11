@@ -73,9 +73,10 @@
         app:layout_constraintTop_toBottomOf="@id/rendondeo_switch" />
 
     <TextView
+        android:id="@+id/monto_propina"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/monto_de_propina"
+        tools:text="Monto de propina: $10.0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_calcular" />
 </androidx.constraintlayout.widget.ConstraintLayout>

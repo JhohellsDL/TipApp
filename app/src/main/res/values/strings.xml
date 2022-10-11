@@ -7,5 +7,5 @@
     <string name="ok_15">OK (15%)</string>
     <string name="redondear_propina">Redondear propina?</string>
     <string name="calcular">Calcular</string>
-    <string name="monto_de_propina">Monto de Propina</string>
+    <string name="monto_de_propina">Monto de Propina: %s</string>
 </resources>
