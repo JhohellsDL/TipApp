@@ -7,22 +7,51 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/costo_de_servicio"
-        android:layout_width="160dp"
-        android:layout_height="wrap_content"
-        android:autofillHints="300"
-        android:hint="@string/costo_del_servicio_text"
-        android:inputType="number"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/pregunta_servicio"
+    <ImageView
+        android:id="@+id/image_store"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/como_fue_el_servicio_text"
+        android:src="@drawable/ic_baseline_store_mall_directory_24"
+        android:importantForAccessibility="no"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/costo_de_servicio"
+        app:layout_constraintBottom_toBottomOf="@id/costo_de_servicio"/>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/costo_de_servicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:hint="@string/costo_del_servicio_text"
+        app:layout_constraintStart_toEndOf="@id/image_store"
+        app:layout_constraintTop_toTopOf="parent" >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/costo_de_servicio_editText"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:autofillHints="300"
+            android:inputType="number"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/image_servicio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_baseline_room_service_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/pregunta_servicio"
+        app:layout_constraintBottom_toBottomOf="@id/pregunta_servicio"/>
+    <TextView
+        android:id="@+id/pregunta_servicio"
+        style="@style/Widget.TipTime.TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="@string/como_fue_el_servicio_text"
+        app:layout_constraintStart_toEndOf="@id/image_servicio"
         app:layout_constraintTop_toBottomOf="@id/costo_de_servicio" />
 
     <RadioGroup
@@ -31,11 +60,12 @@
         android:layout_height="wrap_content"
         android:checkedButton="@id/opcion_veinte_porciento"
         android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/pregunta_servicio"
         app:layout_constraintTop_toBottomOf="@id/pregunta_servicio">
 
         <RadioButton
             android:id="@+id/opcion_veinte_porciento"
+            style="@style/Widget.TipTime.CompoundButton.Switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/sorprendente_20" />
@@ -53,20 +83,32 @@
             android:text="@string/ok_15" />
     </RadioGroup>
 
-    <Switch
+    <ImageView
+        android:id="@+id/image_flecha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:importantForAccessibility="no"
+        android:src="@drawable/ic_baseline_call_made_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/rendondeo_switch"
+        app:layout_constraintBottom_toBottomOf="@id/rendondeo_switch"/>
+
+    <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/rendondeo_switch"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:checked="true"
+        android:layout_marginStart="16dp"
         android:text="@string/redondear_propina"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/image_flecha"
         app:layout_constraintTop_toBottomOf="@id/opciones_propina" />
 
     <Button
         android:id="@+id/btn_calcular"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:text="@string/calcular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -76,6 +118,7 @@
         android:id="@+id/monto_propina"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         tools:text="Monto de propina: $10.0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_calcular" />

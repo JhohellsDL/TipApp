@@ -1,7 +1,11 @@
 package com.example.tipapp
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.KeyEvent
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import com.example.tipapp.databinding.ActivityMainBinding
 import java.text.NumberFormat
 import kotlin.math.ceil
@@ -16,10 +20,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.btnCalcular.setOnClickListener { calcularPropina() }
+
+        binding.costoDeServicioEditText.setOnKeyListener { view, keyCode, _ -> handleKeyEvent(view,keyCode) }
     }
 
     private fun calcularPropina() {
-        val stringInTextField = binding.costoDeServicio.text.toString()
+        val stringInTextField = binding.costoDeServicioEditText.text.toString()
         val cost = stringInTextField.toDoubleOrNull()
 
         if (cost == null){
@@ -40,5 +46,15 @@ class MainActivity : AppCompatActivity() {
 
         val propinaFormateada = NumberFormat.getCurrencyInstance().format(propina)
         binding.montoPropina.text = getString(R.string.monto_de_propina, propinaFormateada)
+    }
+    private fun handleKeyEvent(view: View, keyCode: Int): Boolean {
+        if (keyCode == KeyEvent.KEYCODE_ENTER) {
+            // Hide the keyboard
+            val inputMethodManager =
+                getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
+            return true
+        }
+        return false
     }
 }
